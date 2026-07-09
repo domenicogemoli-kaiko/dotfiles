@@ -79,6 +79,9 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}' # Enable case insentiive 
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}" # Use colors for completion
 zstyle ':completion:*' menu no # Disable menu selection - we are using fzf for this instead
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
+# Drop the recent-branches tag from checkout completion: it re-lists recently
+# checked-out branches with a commit-subject description, so they show up twice
+zstyle ':completion:*:*:git-checkout:*' tag-order '! recent-branches' '-'
 
 # Allows for partial history search with up and down arrow keys
 autoload -U up-line-or-beginning-search
