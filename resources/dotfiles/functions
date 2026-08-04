@@ -90,6 +90,7 @@ wt-init() {
 	cp ~/git/kaiko-eng/.vscode/settings.json .vscode/settings.json
 	cd projects/foundry/frontend
 	cp ~/git/kaiko-eng/projects/foundry/frontend/packages/w-chat/.env packages/w-chat/.env
+	cp ~/git/kaiko-eng/projects/foundry/frontend/packages/w-chat/tests/e2e/credentials.json packages/w-chat/tests/e2e/credentials.json
 	npm ci
 	npm run lingui:build
 }
