@@ -26,7 +26,23 @@
 [init]
 	defaultBranch = main
 [filter "lfs"]
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
+	smudge = /opt/homebrew/bin/git-lfs smudge -- %f
+	process = /opt/homebrew/bin/git-lfs filter-process
 	required = true
-	clean = git-lfs clean -- %f
+	clean = /opt/homebrew/bin/git-lfs clean -- %f
+
+# Use the Kaiko identity in Kaiko repositories. hasconfig matches on the
+# configured remote, so it follows a clone wherever it lands instead of
+# depending on where it sits on disk — ~/git mixes work clones with personal
+# and third-party ones. Both URL spellings are listed because these are cloned
+# over https and ssh interchangeably.
+#
+# Caveat: a remote has to exist for this to match. `git clone` configures one
+# before you can commit, but `git init` does not — a repository created locally
+# and pushed later takes the default identity above until its remote is added.
+[includeIf "hasconfig:remote.*.url:https://github.com/kaiko-ai/**"]
+    path = ~/.gitconfig-kaiko
+[includeIf "hasconfig:remote.*.url:git@github.com:kaiko-ai/**"]
+    path = ~/.gitconfig-kaiko
+[includeIf "hasconfig:remote.*.url:ssh://git@github.com/kaiko-ai/**"]
+    path = ~/.gitconfig-kaiko

@@ -1,0 +1,7 @@
+# Work identity, pulled in by the conditional includes at the end of gitconfig
+# whenever a repository's remote points at a Kaiko organisation. Keyed on the
+# remote rather than on a directory because ~/git holds work and personal
+# clones side by side.
+[user]
+    email = domenico.gemoli@kaiko.ai
+    name = Domenico Gemoli
